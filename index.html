@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>督導戰情室：深度商業顧問版</title>
+  <title>督導戰情室：賦能顧問版</title>
 
   <!-- UI -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -12,151 +12,135 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
     body { font-family: 'Noto Sans TC', sans-serif; }
-    .stat-card { transition: transform .2s; }
-    .stat-card:hover { transform: translateY(-4px); }
-    .chip { font-size: 10px; font-weight: 900; letter-spacing: .04em; }
-    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-    .btn { transition: all .15s ease; }
-    /* Gradient Text - More professional tones */
-    .text-gradient {
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-image: linear-gradient(to right, #1e293b, #475569);
-    }
+    .btn { transition: all .2s ease; }
+    .btn:active { transform: scale(0.98); }
+    .card-shadow { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025); }
+    .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 
-<body class="bg-slate-50 min-h-screen">
-  <div class="max-w-6xl mx-auto px-4 py-8">
+<body class="bg-indigo-50/30 min-h-screen">
+  <div class="max-w-5xl mx-auto px-4 py-8">
 
     <!-- Header -->
-    <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+    <header class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
       <div>
-        <h1 class="text-3xl font-black text-slate-800 flex items-center gap-3">
-          <i class="fas fa-user-tie text-slate-700"></i>
-          <span class="text-gradient">督導戰情室：深度顧問版</span>
+        <h1 class="text-2xl font-black text-slate-800 flex items-center gap-3">
+          <i class="fas fa-hand-holding-heart text-indigo-600"></i>
+          督導戰情室：賦能顧問版
         </h1>
-        <p class="text-slate-500 font-medium mt-1 text-sm">
-          以世界級商業思維與銷售心理學，為您進行嚴謹的個案診斷。
+        <p class="text-slate-500 text-sm mt-1">
+          深度洞察｜溫暖支持｜攜手成交
         </p>
       </div>
 
-      <div class="flex items-center bg-white shadow-sm border border-slate-200 rounded-full px-4 py-2 gap-3 w-full md:w-auto">
-        <i class="fas fa-key text-slate-400 text-sm"></i>
+      <div class="flex items-center bg-white shadow-sm border border-indigo-100 rounded-full px-4 py-2 gap-3 w-full md:w-auto">
+        <i class="fas fa-key text-indigo-300 text-sm"></i>
         <input
           type="password"
           id="apiKey"
-          placeholder="輸入 Gemini API Key"
-          class="text-sm outline-none w-full md:w-80 placeholder-slate-300 text-slate-600"
+          placeholder="輸入 Gemini API Key 啟動神隊友"
+          class="text-sm outline-none w-full md:w-64 placeholder-slate-300 text-slate-600"
         />
       </div>
     </header>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      <!-- Input Section -->
-      <div class="lg:col-span-4 space-y-6">
-        <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 space-y-5 relative overflow-hidden">
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- Left: Input Section -->
+      <div class="lg:col-span-4 space-y-4">
+        <div class="bg-white rounded-2xl border border-indigo-50 p-5 card-shadow relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
+          <h2 class="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2">
+            <i class="fas fa-pen-nib text-indigo-500"></i> 讓我們開始分析吧！
+          </h2>
           
-          <!-- Structured Inputs -->
-          <div class="relative">
-            <label class="block text-xs font-bold text-slate-500 mb-1 uppercase tracking-wider">個案姓名</label>
-            <input type="text" id="userName" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-slate-500 outline-none transition-all" placeholder="例如：王大明">
-          </div>
-
-          <div class="grid grid-cols-2 gap-3 relative">
+          <div class="space-y-3">
             <div>
-              <label class="block text-xs font-bold text-slate-500 mb-1 uppercase tracking-wider">左耳聽力</label>
-              <div class="relative">
-                <select id="leftEar" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-3 text-sm focus:ring-2 focus:ring-slate-500 outline-none appearance-none">
-                    <option value="未檢測/不明">未檢測/不明</option>
-                    <option value="正常 (Normal)">正常 (Normal)</option>
-                    <option value="輕度 (Mild)">輕度 (Mild)</option>
-                    <option value="中度 (Moderate)">中度 (Moderate)</option>
-                    <option value="中重度 (Moderately Severe)">中重度 (Moderately Severe)</option>
-                    <option value="重度 (Severe)">重度 (Severe)</option>
-                    <option value="極重度 (Profound)">極重度 (Profound)</option>
+              <label class="block text-xs font-bold text-slate-400 mb-1">個案姓名</label>
+              <input type="text" id="userName" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none transition-all" placeholder="例如：王大明">
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-xs font-bold text-slate-400 mb-1">左耳聽力</label>
+                <select id="leftEar" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-2 py-2.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                    <option value="未檢測/不明">未檢測</option>
+                    <option value="正常 (Normal)">正常</option>
+                    <option value="輕度 (Mild)">輕度</option>
+                    <option value="中度 (Moderate)">中度</option>
+                    <option value="中重度 (Moderately Severe)">中重度</option>
+                    <option value="重度 (Severe)">重度</option>
+                    <option value="極重度 (Profound)">極重度</option>
                 </select>
-                <i class="fas fa-chevron-down absolute right-3 top-3.5 text-slate-400 text-xs pointer-events-none"></i>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-400 mb-1">右耳聽力</label>
+                <select id="rightEar" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-2 py-2.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                    <option value="未檢測/不明">未檢測</option>
+                    <option value="正常 (Normal)">正常</option>
+                    <option value="輕度 (Mild)">輕度</option>
+                    <option value="中度 (Moderate)">中度</option>
+                    <option value="中重度 (Moderately Severe)">中重度</option>
+                    <option value="重度 (Severe)">重度</option>
+                    <option value="極重度 (Profound)">極重度</option>
+                </select>
               </div>
             </div>
-            <div>
-              <label class="block text-xs font-bold text-slate-500 mb-1 uppercase tracking-wider">右耳聽力</label>
-              <div class="relative">
-                <select id="rightEar" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-3 text-sm focus:ring-2 focus:ring-slate-500 outline-none appearance-none">
-                    <option value="未檢測/不明">未檢測/不明</option>
-                    <option value="正常 (Normal)">正常 (Normal)</option>
-                    <option value="輕度 (Mild)">輕度 (Mild)</option>
-                    <option value="中度 (Moderate)">中度 (Moderate)</option>
-                    <option value="中重度 (Moderately Severe)">中重度 (Moderately Severe)</option>
-                    <option value="重度 (Severe)">重度 (Severe)</option>
-                    <option value="極重度 (Profound)">極重度 (Profound)</option>
-                </select>
-                <i class="fas fa-chevron-down absolute right-3 top-3.5 text-slate-400 text-xs pointer-events-none"></i>
-              </div>
-            </div>
-          </div>
 
-          <div class="relative">
-            <label class="block text-sm font-bold text-slate-700 mb-2 flex items-center gap-2">
-              <i class="fas fa-file-contract text-slate-600"></i> 服務日誌內容
-            </label>
-            <textarea
-              id="logInput"
-              class="w-full h-[320px] p-4 bg-slate-50 border-none rounded-2xl focus:ring-2 focus:ring-slate-500 text-sm leading-relaxed placeholder-slate-400 resize-none"
-              placeholder="請貼上完整的互動過程、客戶疑慮、家屬反應..."
+            <div>
+              <label class="block text-xs font-bold text-slate-400 mb-1">今天的服務日誌</label>
+              <textarea
+                id="logInput"
+                class="w-full h-[280px] p-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 text-sm leading-relaxed placeholder-slate-400 resize-none"
+                placeholder="請把今天發生的故事告訴我...
+客戶有什麼顧慮？家屬支持嗎？
+只要貼上來，我幫你找出成交機會點！"
             ></textarea>
+            </div>
           </div>
 
-          <div class="flex gap-3 pt-2">
+          <div class="flex gap-2 mt-4">
             <button
               onclick="analyzeLog()"
               id="analyzeBtn"
-              class="btn flex-1 bg-slate-800 hover:bg-slate-900 text-white font-bold py-4 rounded-2xl shadow-lg flex items-center justify-center gap-3 transform active:scale-95"
+              class="btn flex-1 bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 text-white font-bold py-3.5 rounded-xl shadow-lg flex items-center justify-center gap-2"
             >
-              <i class="fas fa-magnifying-glass-chart"></i> 執行專業診斷
+              <i class="fas fa-wand-magic-sparkles text-yellow-300"></i> 獲得賦能建議
             </button>
-
             <button
               onclick="loadDemo()"
-              class="btn bg-white hover:bg-slate-50 border border-slate-200 text-slate-500 font-black py-4 px-4 rounded-2xl shadow-sm flex items-center justify-center gap-2"
-              title="試試範例"
+              class="btn bg-white hover:bg-slate-50 border border-slate-200 text-slate-500 py-3.5 px-3.5 rounded-xl shadow-sm"
+              title="載入範例"
             >
               <i class="fas fa-flask"></i>
             </button>
           </div>
         </div>
 
-        <div id="statusInfo" class="hidden bg-white/80 backdrop-blur border border-slate-200 p-6 rounded-3xl text-slate-600 text-sm font-bold flex flex-col items-center justify-center gap-3 text-center shadow-lg">
-          <i class="fas fa-circle-notch fa-spin text-3xl"></i>
-          <div>
-            正在進行深度商業邏輯分析...<br>
-            <span class="text-xs text-slate-400 font-normal mt-1">評估動機、家庭支持與銷售心理模型</span>
-          </div>
+        <div id="statusInfo" class="hidden bg-white/80 backdrop-blur border border-indigo-100 p-6 rounded-2xl text-indigo-600 text-sm font-bold flex flex-col items-center justify-center gap-2 text-center shadow-lg">
+          <i class="fas fa-circle-notch fa-spin text-2xl"></i>
+          <span>正在為您整理思緒與策略...<br><span class="text-xs font-normal text-slate-500">深呼吸，您今天已經做得很棒了！</span></span>
         </div>
       </div>
 
-      <!-- Results Section -->
+      <!-- Right: Analysis Result -->
       <div class="lg:col-span-8">
-        <!-- Empty State -->
-        <div id="welcomeScreen" class="h-full min-h-[400px] flex flex-col items-center justify-center bg-white rounded-3xl border border-slate-100 shadow-sm p-12 text-center">
-          <div class="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mb-6 text-slate-300">
-            <i class="fas fa-clipboard-list text-4xl"></i>
+        <div id="welcomeScreen" class="h-full min-h-[400px] flex flex-col items-center justify-center bg-white rounded-2xl border border-dashed border-slate-200 text-center p-8">
+          <div class="w-20 h-20 bg-indigo-50 rounded-full flex items-center justify-center mb-4 text-indigo-300">
+            <i class="fas fa-lightbulb text-4xl"></i>
           </div>
-          <h3 class="text-slate-700 font-black text-xl mb-2">等待輸入日誌資料</h3>
-          <p class="text-slate-400 text-sm max-w-md leading-relaxed">
-            系統將以嚴謹的顧問視角，為您分析：<br>
-            <span class="inline-block mt-2">
-                <span class="bg-slate-100 px-2 py-1 rounded text-xs font-bold text-slate-600 mr-1">📊 真實商機評級</span>
-                <span class="bg-slate-100 px-2 py-1 rounded text-xs font-bold text-slate-600 mr-1">🧠 銷售心理策略</span>
-                <span class="bg-slate-100 px-2 py-1 rounded text-xs font-bold text-slate-600">📅 14天追蹤計畫</span>
-            </span>
+          <h3 class="text-slate-700 font-bold text-lg">準備好迎接下一步了嗎？</h3>
+          <p class="text-slate-400 text-sm mt-2 max-w-sm leading-relaxed">
+            輸入日誌後，我將以世界級顧問的視野，為您提供：<br>
+            <span class="font-bold text-indigo-500">精準商機判斷</span>、<span class="font-bold text-indigo-500">心理學成交心法</span>，以及<span class="font-bold text-indigo-500">明確的電話追蹤指引</span>。
           </p>
         </div>
 
-        <!-- Analysis Content -->
-        <div id="analysisResult" class="hidden space-y-8 pb-12">
-            <!-- Content filled by JS -->
+        <div id="analysisResult" class="hidden space-y-6">
+            <!-- Content will be injected here -->
         </div>
       </div>
     </div>
@@ -209,7 +193,6 @@
       resultDiv.classList.add('hidden');
       resultDiv.innerHTML = '';
       
-      // Construct Prompt
       const promptText = `
 【個案基本資料】
 用戶名：${userName}
@@ -221,84 +204,71 @@ ${logInput}
       `.trim();
 
       const systemPrompt = `
-你是一位具遠見、思維清晰、具有高度智慧的「商業顧問導師」與「嚴師」。
-你擁有世界級商業諮詢公司的深度經驗，並對視力、聽力、睡眠與保健食品產業有深度的經歷與洞察。
-你非常精通銷售心理學、消費者行為與各項管理指標。
+你是一位具遠見、思維清晰、具有高度智慧的「商業顧問導師」。
+你擁有世界級商業諮詢公司（如 McKinsey, BCG）的深度經驗，同時對【視力、聽力、睡眠、保健食品】等健康產業有深厚的洞察。
 
-請以【嚴謹、專業、具洞察力】的口吻協助門市同仁分析日誌。你的目標不是討好同仁，而是協助他們看清盲點，提升成交率。
+請注意：**你的角色是「賦能者 (Enabler)」**。
+雖然你的分析邏輯必須嚴謹（像一位嚴師），但你給予回饋的語氣必須充滿**支持、鼓勵與同理心**（像一位教練）。
+你的目標不是批判同仁做得不好，而是讓他們看到「原來只要這樣調整，我就能成交」，提升他們的執行意願。
 
-【核心判斷邏輯】
+【核心判斷邏輯 - 請嚴格執行】
 
-1.  **商機評級 (Opportunity Grade) - 請嚴格把關**：
-    不要輕易給 A。請綜合評估以下三點：
-    * **用戶動機 (Motivation)**：是「想要改變」還是「被逼來的」？是「剛性需求」(不配不行) 還是「改善型需求」？
-    * **家庭支持 (Support)**：決策者是否在場？家屬是助力(支持配戴)還是阻力(覺得貴/沒必要)？
-    * **聽損程度 (Severity)**：是否已影響生活(如：打麻將聽不到、電視開很大聲)？聽損越重，剛需越強。
-    * **評級標準**：
-        * **S級**：剛需強 + 決策者支持 + 預算無虞。
-        * **A級**：剛需強 + 意願高，但需排除小異議。
-        * **B級**：有需求但動機弱，或受價格/家屬阻礙 (這是最常見的，請多以此為基準)。
-        * **C級**：無自覺、排斥、純比價。
+1.  **商機評級 (Opportunity Grade)**：
+    * **S級**：剛需強 + 決策者支持 + 預算足。
+    * **A級**：剛需強 + 意願高，僅需排除小異議。
+    * **B級**：有需求但動機弱，或受價格/家屬阻礙 (最常見)。
+    * **C級**：無自覺、排斥、純比價。
 
-2.  **銷售心理學應用**：
-    在建議中，請明確指出可運用的心理學技巧，例如：
-    * **損失厭惡 (Loss Aversion)**：強調「聽不到」會失去什麼(親情、社交)，而非只強調「聽得到」有什麼好處。
-    * **定錨效應 (Anchoring)**：如何正確呈現價格。
-    * **社會證明 (Social Proof)**：利用類似案例的故事。
-    * **認知失調 (Cognitive Dissonance)**：溫和指出「想改善生活」與「拒絕輔具」之間的矛盾。
+2.  **產品策略 (Oticon Intent 系列)**：
+    * **環境吵雜/動態需求高**：推薦 **Intent 1 或 2** (4D 感測技術, +5dB SNR)。
+    * **對聲音敏感/怕嚇到**：強調「瞬響聲穩定器」。
+    * **音質不習慣且聽力非重度**：務必建議施測 **YOUMATIC**。
 
-3.  **產品策略 (Oticon Intent 系列)**：
-    * 若用戶覺得**吵雜環境聽不清**：務必推薦 **Intent 1 或 2** (搭載 4D 感測技術，+5dB SNR)。
-    * 若用戶**怕突發大聲**：強調瞬響聲穩定器。
-    * 若**音質不習慣且聽損非重度**：務必建議施測 **YOUMATIC**。
+3.  **【關鍵任務】：24h / 7d / 14d 追蹤計畫 (以電話為主)**：
+    * **24h**：降低焦慮、重申價值。
+    * **7d**：解決初期異議，確認習慣。
+    * **14d**：深度連結，創造新契機。
 
-4.  **追蹤計畫 (Follow-up Plan) - 24h / 7d / 14d**：
-    * 用戶平均需要 8.9 次自我說服。
-    * **24h**：溫暖關懷，降低購後(或未購)焦慮，重申價值。
-    * **7d**：習慣養成確認，處理初期異議。
-    * **14d**：深度關係維護，邀約回店調整或是再次嘗試(若未購)。
-
-5.  **簡訊模板 (Tone of Voice)**：
-    * **對象是長輩，請絕對避免輕浮、過度活潑的用語。**
-    * 請使用穩重、溫暖、尊重的語氣 (Honorifics)。
-    * **第一則必須為【正式官方版】**：開頭固定為「【科林助聽器】親愛的${userName}貴賓，您好！」，內容須得體大方。
-    * 另外兩則為【個人關懷版】：語氣誠懇，像一位值得信賴的健康顧問。
+4.  **簡訊模板 (務必產出 3 則)**：
+    * **第一則【正式官方版】**：開頭固定為「【科林助聽器】親愛的${userName}貴賓，您好！」。
+    * 另外提供兩則【溫暖個人版】，語氣親切像朋友。
 
 【輸出 JSON 結構】
-1. **summary**: 導師的總體點評 (請一針見血指出優點與盲點)。
-2. **service_challenges_top3**: 3 個關鍵挑戰與對策。
-    - challenge: 盲點或挑戰
-    - solution: 顧問建議 (包含心理學技巧/產品優勢/YOUMATIC)
-    - cheer_up_msg: 導師的指引 (金句)
-3. **next_visit_focus**: 下次進店或接觸的 3 個戰略重點 (請包含具體的銷售心理學應用)。
+1. **consultant_insight**: 顧問的洞察點評 (請以「肯定現有努力 + 點出突破口」的方式撰寫，語氣要溫暖有力)。
+2. **encouragement_quote**: 一句激勵人心的金句，讓同仁看完充滿力量。
+3. **sales_strategy_focus**: 下次接觸的 3 個戰略重點 (包含心理學原理)。
 4. **cases**: 個案詳情
     - id
-    - opportunity_grade (S/A/B/C) 與 **嚴謹的評估理由**
-    - disc_strategy (針對個性的專業應對)
-    - followup_plan (24h / 7d / **14d** 的具體行動)
-5. **sms_templates**: 3 則簡訊 (1則正式，2則溫暖穩重)。
+    - opportunity_grade (S/A/B/C) 與 **評級理由(請客觀分析阻礙，但結尾要給予信心)**
+    - product_suggestion (產品建議與理由)
+    - followup_plan_detailed (結構化追蹤)
+        - within_24h: { "phone_focus": "...", "sms_backup": "..." }
+        - within_7d: { "phone_focus": "...", "sms_backup": "..." }
+        - within_14d: { "phone_focus": "...", "sms_backup": "..." }
+5. **sms_templates**: 3 則簡訊 (1則正式，2則個人)。
 
 【輸出範例 (JSON)】
 {
-  "summary": "本次服務流程完整，但對『價格異議』的處理過於退讓...",
-  "service_challenges_top3": [
-    { "challenge": "家屬(女兒)是隱形阻礙", "solution": "運用『互惠原則』，先肯定女兒的孝心...", "cheer_up_msg": "搞定決策者，訂單自然來。" }
-  ],
-  "next_visit_focus": [
-    "1. 運用『定錨效應』：先提 Intent 1 的價值...",
+  "consultant_insight": "這是一個很有潛力的個案！你已經成功建立了初步信任，這非常不容易。目前的卡點在於決策者(女兒)尚未感受到價值，我們只需要...",
+  "encouragement_quote": "每一次的異議，都是通往成交的階梯。你已經在路上了，加油！🚀",
+  "sales_strategy_focus": [
+    "1. 運用『損失厭惡』：溫柔地讓女兒知道，媽媽聽不到會有多孤單...",
     "2. ..."
   ],
   "cases": [
     {
       "case_id": "...",
       "opportunity_grade": "B",
-      "opportunity_reason": "動機尚可，但關鍵決策者(女兒)對價格有疑慮，且未做REM缺乏客觀數據支撐。",
-      "disc_strategy": "...",
-      "followup_plan": { "within_24h": "...", "within_7d": "...", "within_14d": "..." }
+      "opportunity_reason": "雖然目前受限於價格與家屬態度，但只要我們能拿出客觀數據(REM)，很有機會翻盤！",
+      "product_suggestion": "...",
+      "followup_plan_detailed": {
+        "within_24h": { "phone_focus": "致電重點：先不談買賣，純粹關心...", "sms_backup": "..." },
+        ...
+      }
     }
   ],
   "sms_templates": [
-    { "scenario": "正式關懷", "template": "【科林助聽器】親愛的王大明貴賓，您好！..." }
+    { "scenario": "正式關懷", "template": "..." }
   ]
 }
       `.trim();
@@ -316,7 +286,7 @@ ${logInput}
               systemInstruction: { parts: [{ text: systemPrompt }] },
               generationConfig: {
                 responseMimeType: "application/json",
-                temperature: 0.3
+                temperature: 0.4
               }
             })
           }
@@ -327,37 +297,25 @@ ${logInput}
         if (!raw) throw new Error("模型未回傳可解析內容");
 
         let result;
-        // Clean JSON formatting to prevent errors (remove markdown code blocks)
         let cleanText = raw.replace(/```json/gi, '').replace(/```/g, '').trim();
+        cleanText = cleanText.replace(/,\s*([\]}])/g, '$1');
 
         try {
-          // Attempt to parse directly
           result = JSON.parse(cleanText);
         } catch (e) {
-          console.warn("Initial parse failed, attempting repairs...");
-          // Common LLM JSON fix: remove trailing commas before closing braces/brackets
-          cleanText = cleanText.replace(/,\s*([\]}])/g, '$1');
-          try {
-              result = JSON.parse(cleanText);
-          } catch (e2) {
-              // Fallback: Try to extract JSON from text if wrapped
-              const first = cleanText.indexOf('{');
-              const last = cleanText.lastIndexOf('}');
-              if (first >= 0 && last >= 0 && last > first) {
-                  const sub = cleanText.substring(first, last + 1);
-                  result = JSON.parse(sub);
-              } else {
-                  throw e;
-              }
-          }
+          const first = cleanText.indexOf('{');
+          const last = cleanText.lastIndexOf('}');
+          if (first >= 0 && last >= 0 && last > first) {
+              result = JSON.parse(cleanText.substring(first, last + 1));
+          } else throw e;
         }
 
         lastResult = result;
-        renderSimplifiedReport(result);
+        renderReport(result);
 
       } catch (error) {
         console.error(error);
-        alert('分析失敗：請檢查網路或 API Key。(詳細錯誤請看 Console)');
+        alert('分析失敗：請檢查網路或 API Key。');
       } finally {
         btn.disabled = false;
         status.classList.add('hidden');
@@ -368,158 +326,160 @@ ${logInput}
     // =======================
     // Render
     // =======================
-    function renderSimplifiedReport(data) {
+    function renderReport(data) {
         const container = document.getElementById('analysisResult');
-        const summary = data?.summary || "資料讀取中...";
-        const focus = data?.next_visit_focus || [];
-        const challenges = data?.service_challenges_top3 || [];
+        const insight = data?.consultant_insight || "正在為您整理思緒...";
+        const quote = data?.encouragement_quote || "相信自己，你能做到！";
+        const focus = data?.sales_strategy_focus || [];
         const cases = data?.cases || [];
         const sms = data?.sms_templates || [];
 
         let html = '';
 
-        // 1. Consultant Summary & Next Focus (Top Priority)
+        // 1. Consultant Insight (Encouraging Header)
         html += `
-          <div class="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm">
-            <div class="flex items-start gap-4">
-                <div class="bg-slate-100 p-3 rounded-2xl">
-                    <i class="fas fa-user-graduate text-2xl text-slate-600"></i>
+          <div class="bg-gradient-to-br from-slate-800 to-slate-900 text-white rounded-2xl p-8 shadow-xl animate-fade-in relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-5 rounded-full -mr-10 -mt-10"></div>
+            <div class="flex items-start gap-5 relative z-10">
+                <div class="bg-white/10 p-3 rounded-2xl backdrop-blur-sm">
+                    <i class="fas fa-crown text-yellow-400 text-2xl"></i>
                 </div>
                 <div>
-                    <h2 class="text-xl font-black text-slate-800 mb-2">顧問導師點評</h2>
-                    <p class="text-slate-600 leading-relaxed text-sm font-medium">${escapeHtml(summary)}</p>
+                    <h2 class="font-bold text-xl mb-3">顧問導師的戰略指引</h2>
+                    <p class="text-slate-200 text-sm leading-relaxed font-medium tracking-wide">${escapeHtml(insight)}</p>
+                    <div class="mt-4 pt-4 border-t border-white/10 flex items-center gap-2 text-yellow-300 text-sm font-bold">
+                        <i class="fas fa-quote-left"></i>
+                        <span>${escapeHtml(quote)}</span>
+                    </div>
                 </div>
-            </div>
-
-            <div class="mt-8 bg-slate-50 rounded-2xl p-6 border border-slate-100">
-                <div class="flex items-center gap-2 mb-4">
-                    <i class="fas fa-bullseye text-red-500"></i>
-                    <h3 class="font-bold text-lg text-slate-800">下次接觸戰略重點</h3>
-                </div>
-                <ul class="space-y-3">
-                    ${focus.map(item => `
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check-circle mt-1 text-slate-400"></i>
-                            <span class="text-sm font-bold text-slate-700">${escapeHtml(item)}</span>
-                        </li>
-                    `).join('') || '<li class="text-sm opacity-70">暫無特別重點</li>'}
-                </ul>
             </div>
           </div>
         `;
 
-        // 2. Strategic Challenges (Level Up)
-        if (challenges.length > 0) {
+        // 2. Strategic Focus (Actionable)
+        if (focus.length > 0) {
             html += `
-              <div class="mt-10">
-                <div class="flex items-center gap-3 mb-5 px-2">
-                   <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-sm">
-                     !
-                   </div>
-                   <h2 class="text-xl font-black text-slate-800">關鍵挑戰與對策</h2>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  ${challenges.map((b, i) => `
-                    <div class="bg-white rounded-2xl p-5 border-l-4 border-amber-400 shadow-sm relative overflow-hidden">
-                      <div class="mb-3">
-                        <div class="text-[10px] font-bold text-amber-600 uppercase tracking-wide mb-1">CHALLENGE #${i+1}</div>
-                        <div class="font-black text-slate-800 leading-snug">${escapeHtml(b.challenge)}</div>
-                      </div>
-                      
-                      <div class="bg-slate-50 rounded-xl p-3 mb-3 border border-slate-100">
-                        <div class="text-[10px] text-slate-400 font-bold mb-1">顧問建議 🗝️</div>
-                        <div class="text-sm text-slate-700 font-medium">${escapeHtml(b.solution)}</div>
-                      </div>
+              <div class="bg-white rounded-2xl border border-indigo-50 p-6 card-shadow animate-fade-in" style="animation-delay: 0.1s">
+                <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <i class="fas fa-compass text-red-500"></i> 下一步，我們這樣做會更好
+                </h3>
+                <ul class="space-y-3">
+                    ${focus.map(item => `
+                        <li class="flex items-start gap-3 text-sm text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-100 hover:border-red-200 transition-colors">
+                            <i class="fas fa-check-circle text-red-400 mt-0.5"></i>
+                            <span class="font-medium">${escapeHtml(item)}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+              </div>
+            `;
+        }
 
-                      <div class="flex items-center gap-2 text-xs font-bold text-slate-500 bg-slate-100 px-3 py-2 rounded-lg">
-                        <i class="fas fa-quote-left"></i>
-                        <span>${escapeHtml(b.cheer_up_msg)}</span>
-                      </div>
+        // 3. Cases
+        html += `
+          <div class="space-y-6">
+            ${cases.map((c, idx) => {
+                const grade = c.opportunity_grade || '?';
+                // Warmer colors for grades
+                const gradeColor = grade === 'S' || grade === 'A' ? 'bg-emerald-100 text-emerald-700' : grade === 'B' ? 'bg-indigo-100 text-indigo-700' : 'bg-slate-100 text-slate-600';
+                
+                return `
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden card-shadow animate-fade-in" style="animation-delay: 0.2s">
+                    <!-- Header -->
+                    <div class="bg-slate-50/50 px-6 py-4 border-b border-slate-100 flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center font-bold text-slate-600 text-sm shadow-sm">${idx+1}</span>
+                            <h3 class="font-black text-slate-800 text-lg">${escapeHtml(c.case_id)}</h3>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">成交機會</span>
+                            <span class="px-3 py-1 rounded-lg font-black text-sm ${gradeColor} shadow-sm">${grade} 級</span>
+                        </div>
                     </div>
-                  `).join('')}
+
+                    <div class="p-6 space-y-6">
+                        <!-- Reason & Product -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-400 uppercase mb-2 flex items-center gap-1"><i class="fas fa-search"></i> 機會點分析</h4>
+                                <p class="text-sm text-slate-700 leading-relaxed font-medium bg-slate-50 p-3 rounded-xl border border-slate-100">${escapeHtml(c.opportunity_reason)}</p>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-indigo-400 uppercase mb-2 flex items-center gap-1"><i class="fas fa-gift"></i> 產品助攻策略</h4>
+                                <p class="text-sm text-indigo-800 font-medium leading-relaxed bg-indigo-50 p-3 rounded-xl border border-indigo-100">${escapeHtml(c.product_suggestion)}</p>
+                            </div>
+                        </div>
+
+                        <!-- Follow-up Plan (Phone Focus) -->
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2">
+                                <i class="fas fa-phone-volume text-emerald-500"></i> 電話關懷指引 (致電重點)
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                ${renderPlanCard('24H 黃金溫溫期', c.followup_plan_detailed?.within_24h, 'border-emerald-100 bg-emerald-50/30')}
+                                ${renderPlanCard('7D 習慣養成期', c.followup_plan_detailed?.within_7d, 'border-slate-200 bg-white')}
+                                ${renderPlanCard('14D 關係深耕期', c.followup_plan_detailed?.within_14d, 'border-slate-200 bg-white')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('')}
+          </div>
+        `;
+
+        // 4. SMS Templates
+        if (sms.length > 0) {
+            html += `
+              <div class="bg-white rounded-2xl border border-indigo-50 p-6 card-shadow animate-fade-in" style="animation-delay: 0.3s">
+                <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <i class="fas fa-comment-dots text-indigo-500"></i> 簡訊備案 (致電未接時使用)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    ${sms.map(t => `
+                        <div class="bg-white rounded-xl p-4 border border-slate-200 relative group cursor-pointer hover:border-indigo-400 hover:shadow-md transition-all" 
+                             data-sms="${escapeHtml(t.template)}"
+                             onclick="copyTextToClipboard(this.dataset.sms)">
+                            <div class="absolute top-3 right-3 text-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:scale-110">
+                                <i class="fas fa-copy"></i>
+                            </div>
+                            <div class="text-xs font-bold text-indigo-600 mb-2 uppercase tracking-wide bg-indigo-50 inline-block px-2 py-0.5 rounded">${escapeHtml(t.scenario)}</div>
+                            <p class="text-sm text-slate-600 whitespace-pre-wrap leading-relaxed">${escapeHtml(t.template)}</p>
+                        </div>
+                    `).join('')}
                 </div>
               </div>
             `;
         }
 
-        // 3. Cases & SMS (Split View)
-        html += `
-          <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Cases -->
-            <div class="space-y-5">
-                <div class="flex items-center gap-3 px-2">
-                   <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
-                     <i class="fas fa-chart-line"></i>
-                   </div>
-                   <h2 class="text-xl font-black text-slate-800">個案戰情分析</h2>
-                </div>
-
-                ${cases.map(c => {
-                    const grade = c.opportunity_grade || '?';
-                    const color = grade === 'S' || grade === 'A' ? 'text-green-600 bg-green-100' : grade === 'B' ? 'text-blue-600 bg-blue-100' : 'text-slate-600 bg-slate-100';
-                    
-                    return `
-                    <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-                        <div class="flex justify-between items-start mb-4 border-b border-slate-100 pb-4">
-                            <div>
-                                <h3 class="text-lg font-black text-slate-800">${escapeHtml(c.case_id)}</h3>
-                                <div class="text-xs text-slate-500 font-medium mt-1">DISC 策略: ${escapeHtml(c.disc_strategy || '無')}</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-[10px] text-slate-400 font-bold uppercase mb-1">商機評級</div>
-                                <div class="w-10 h-10 rounded-lg flex items-center justify-center font-black text-xl ${color}">${grade}</div>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-4 bg-slate-50 p-3 rounded-lg">
-                            <div class="text-[10px] text-slate-400 font-bold uppercase mb-1">評級理由</div>
-                            <div class="text-xs text-slate-700 font-medium leading-relaxed">${escapeHtml(c.opportunity_reason || '無詳細理由')}</div>
-                        </div>
-
-                        <div class="space-y-2">
-                             <div class="flex gap-3 items-start p-2 rounded-lg hover:bg-slate-50 transition-colors">
-                                <span class="text-xs font-black text-blue-500 w-8 pt-0.5">24H</span>
-                                <span class="text-sm font-bold text-slate-700 leading-snug">${escapeHtml(c.followup_plan?.within_24h || '-')}</span>
-                             </div>
-                             <div class="flex gap-3 items-start p-2 rounded-lg hover:bg-slate-50 transition-colors">
-                                <span class="text-xs font-black text-slate-400 w-8 pt-0.5">7D</span>
-                                <span class="text-sm font-medium text-slate-600 leading-snug">${escapeHtml(c.followup_plan?.within_7d || '-')}</span>
-                             </div>
-                             <div class="flex gap-3 items-start p-2 rounded-lg hover:bg-slate-50 transition-colors">
-                                <span class="text-xs font-black text-slate-400 w-8 pt-0.5">14D</span>
-                                <span class="text-sm font-medium text-slate-600 leading-snug">${escapeHtml(c.followup_plan?.within_14d || '-')}</span>
-                             </div>
-                        </div>
-                    </div>
-                `}).join('')}
-            </div>
-
-            <!-- SMS -->
-            <div class="space-y-5">
-                <div class="flex items-center gap-3 px-2">
-                   <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
-                     <i class="fas fa-comment-dots"></i>
-                   </div>
-                   <h2 class="text-xl font-black text-slate-800">客戶維繫簡訊</h2>
-                </div>
-
-                <div class="grid grid-cols-1 gap-4">
-                    ${sms.map(t => `
-                        <div class="group bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:border-emerald-400 transition-colors cursor-pointer relative" onclick="copyTextToClipboard('${escapeHtml(t.template)}')">
-                            <div class="absolute top-4 right-4 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <i class="fas fa-copy"></i>
-                            </div>
-                            <div class="text-xs font-bold text-emerald-700 mb-2 uppercase tracking-wide bg-emerald-50 inline-block px-2 py-0.5 rounded">${escapeHtml(t.scenario)}</div>
-                            <p class="text-sm text-slate-700 leading-relaxed font-medium group-hover:text-slate-900 transition-colors whitespace-pre-wrap">${escapeHtml(t.template)}</p>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-          </div>
-        `;
-
         container.innerHTML = html;
+    }
+
+    function renderPlanCard(title, plan, extraClass = '') {
+        if (!plan) return '';
+        return `
+            <div class="border rounded-xl p-4 flex flex-col h-full hover:shadow-sm transition-shadow ${extraClass}">
+                <div class="text-xs font-black text-slate-400 uppercase mb-3 tracking-wider pb-2 border-b border-slate-100/50 flex justify-between items-center">
+                    ${title}
+                </div>
+                
+                <div class="mb-3 flex-1">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        <span class="text-xs font-bold text-emerald-700">致電重點</span>
+                    </div>
+                    <p class="text-sm text-slate-700 font-bold leading-snug">${escapeHtml(plan.phone_focus)}</p>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100/50">
+                    <div class="flex items-center gap-2 mb-1">
+                        <i class="fas fa-message text-slate-300 text-xs"></i>
+                        <span class="text-xs font-bold text-slate-400">簡訊備案</span>
+                    </div>
+                    <p class="text-xs text-slate-500 leading-snug">${escapeHtml(plan.sms_backup)}</p>
+                </div>
+            </div>
+        `;
     }
 
     // =======================
@@ -527,16 +487,20 @@ ${logInput}
     // =======================
     function escapeHtml(str) {
       if (str === null || str === undefined) return '';
-      return String(str).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
+      return String(str)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
     }
     
     function copyTextToClipboard(text) {
         if (!text) return;
         navigator.clipboard.writeText(text).then(() => {
-            // Simple toast notification
             const toast = document.createElement('div');
-            toast.className = 'fixed bottom-5 right-5 bg-slate-800 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-bounce z-50';
-            toast.innerHTML = '<i class="fas fa-check mr-2 text-emerald-400"></i> 已複製簡訊！';
+            toast.className = 'fixed bottom-5 right-5 bg-slate-800 text-white px-4 py-2.5 rounded-full text-sm font-bold shadow-lg animate-bounce z-50 flex items-center gap-2';
+            toast.innerHTML = '<i class="fas fa-check-circle text-emerald-400 text-lg"></i> 已複製簡訊內容';
             document.body.appendChild(toast);
             setTimeout(() => toast.remove(), 2000);
         }).catch(() => alert('複製失敗'));
