@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>門市夥伴的 AI 神隊友：日誌分析</title>
+  <title>督導戰情室：深度商業顧問版</title>
 
   <!-- UI -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -17,38 +17,38 @@
     .chip { font-size: 10px; font-weight: 900; letter-spacing: .04em; }
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
     .btn { transition: all .15s ease; }
-    /* Gradient Text */
+    /* Gradient Text - More professional tones */
     .text-gradient {
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-image: linear-gradient(to right, #4f46e5, #9333ea);
+      background-image: linear-gradient(to right, #1e293b, #475569);
     }
   </style>
 </head>
 
-<body class="bg-indigo-50/30 min-h-screen">
+<body class="bg-slate-50 min-h-screen">
   <div class="max-w-6xl mx-auto px-4 py-8">
 
     <!-- Header -->
     <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
       <div>
         <h1 class="text-3xl font-black text-slate-800 flex items-center gap-3">
-          <i class="fas fa-robot text-indigo-500"></i>
-          <span class="text-gradient">門市夥伴的 AI 神隊友</span>
+          <i class="fas fa-user-tie text-slate-700"></i>
+          <span class="text-gradient">督導戰情室：深度顧問版</span>
         </h1>
         <p class="text-slate-500 font-medium mt-1 text-sm">
-          ✨ 今天的努力都很棒！讓 AI 幫你整理重點，下次服務更輕鬆 💪
+          以世界級商業思維與銷售心理學，為您進行嚴謹的個案診斷。
         </p>
       </div>
 
-      <div class="flex items-center bg-white shadow-sm border border-indigo-100 rounded-full px-4 py-2 gap-3 w-full md:w-auto">
-        <i class="fas fa-key text-indigo-300 text-sm"></i>
+      <div class="flex items-center bg-white shadow-sm border border-slate-200 rounded-full px-4 py-2 gap-3 w-full md:w-auto">
+        <i class="fas fa-key text-slate-400 text-sm"></i>
         <input
           type="password"
           id="apiKey"
-          placeholder="輸入 Gemini API Key 召喚神隊友"
-          class="text-sm outline-none w-full md:w-80 placeholder-indigo-200 text-slate-600"
+          placeholder="輸入 Gemini API Key"
+          class="text-sm outline-none w-full md:w-80 placeholder-slate-300 text-slate-600"
         />
       </div>
     </header>
@@ -56,22 +56,19 @@
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
       <!-- Input Section -->
       <div class="lg:col-span-4 space-y-6">
-        <div class="bg-white rounded-3xl shadow-xl shadow-indigo-100/50 border border-indigo-50 p-6 space-y-5 relative overflow-hidden">
+        <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 space-y-5 relative overflow-hidden">
           
-          <!-- Decor -->
-          <div class="absolute -top-10 -right-10 w-32 h-32 bg-indigo-50 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
-
           <!-- Structured Inputs -->
           <div class="relative">
-            <label class="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">個案暱稱 / 用戶名</label>
-            <input type="text" id="userName" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all" placeholder="例如：王大哥">
+            <label class="block text-xs font-bold text-slate-500 mb-1 uppercase tracking-wider">個案姓名</label>
+            <input type="text" id="userName" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-slate-500 outline-none transition-all" placeholder="例如：王大明">
           </div>
 
           <div class="grid grid-cols-2 gap-3 relative">
             <div>
-              <label class="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">左耳聽力</label>
+              <label class="block text-xs font-bold text-slate-500 mb-1 uppercase tracking-wider">左耳聽力</label>
               <div class="relative">
-                <select id="leftEar" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none appearance-none">
+                <select id="leftEar" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-3 text-sm focus:ring-2 focus:ring-slate-500 outline-none appearance-none">
                     <option value="未檢測/不明">未檢測/不明</option>
                     <option value="正常 (Normal)">正常 (Normal)</option>
                     <option value="輕度 (Mild)">輕度 (Mild)</option>
@@ -84,9 +81,9 @@
               </div>
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">右耳聽力</label>
+              <label class="block text-xs font-bold text-slate-500 mb-1 uppercase tracking-wider">右耳聽力</label>
               <div class="relative">
-                <select id="rightEar" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none appearance-none">
+                <select id="rightEar" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-3 text-sm focus:ring-2 focus:ring-slate-500 outline-none appearance-none">
                     <option value="未檢測/不明">未檢測/不明</option>
                     <option value="正常 (Normal)">正常 (Normal)</option>
                     <option value="輕度 (Mild)">輕度 (Mild)</option>
@@ -102,13 +99,12 @@
 
           <div class="relative">
             <label class="block text-sm font-bold text-slate-700 mb-2 flex items-center gap-2">
-              <i class="fas fa-pen-nib text-indigo-500"></i> 今天發生了什麼事？
+              <i class="fas fa-file-contract text-slate-600"></i> 服務日誌內容
             </label>
             <textarea
               id="logInput"
-              class="w-full h-[320px] p-4 bg-slate-50 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500 text-sm leading-relaxed placeholder-slate-400 resize-none"
-              placeholder="請隨意貼上對話重點、客戶反應、你覺得卡關的地方...
-AI 會幫你整理成下一步攻略！"
+              class="w-full h-[320px] p-4 bg-slate-50 border-none rounded-2xl focus:ring-2 focus:ring-slate-500 text-sm leading-relaxed placeholder-slate-400 resize-none"
+              placeholder="請貼上完整的互動過程、客戶疑慮、家屬反應..."
             ></textarea>
           </div>
 
@@ -116,9 +112,9 @@ AI 會幫你整理成下一步攻略！"
             <button
               onclick="analyzeLog()"
               id="analyzeBtn"
-              class="btn flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-black py-4 rounded-2xl shadow-lg shadow-indigo-200 flex items-center justify-center gap-3 transform active:scale-95"
+              class="btn flex-1 bg-slate-800 hover:bg-slate-900 text-white font-bold py-4 rounded-2xl shadow-lg flex items-center justify-center gap-3 transform active:scale-95"
             >
-              <i class="fas fa-sparkles"></i> 召喚 AI 神隊友
+              <i class="fas fa-magnifying-glass-chart"></i> 執行專業診斷
             </button>
 
             <button
@@ -131,11 +127,11 @@ AI 會幫你整理成下一步攻略！"
           </div>
         </div>
 
-        <div id="statusInfo" class="hidden bg-white/80 backdrop-blur border border-indigo-100 p-6 rounded-3xl text-indigo-600 text-sm font-bold flex flex-col items-center justify-center gap-3 text-center shadow-lg">
+        <div id="statusInfo" class="hidden bg-white/80 backdrop-blur border border-slate-200 p-6 rounded-3xl text-slate-600 text-sm font-bold flex flex-col items-center justify-center gap-3 text-center shadow-lg">
           <i class="fas fa-circle-notch fa-spin text-3xl"></i>
           <div>
-            AI 神隊友正在大腦風暴中... 🧠<br>
-            <span class="text-xs text-slate-400 font-normal mt-1">正在幫你思考最好的應對方式 & 簡訊內容</span>
+            正在進行深度商業邏輯分析...<br>
+            <span class="text-xs text-slate-400 font-normal mt-1">評估動機、家庭支持與銷售心理模型</span>
           </div>
         </div>
       </div>
@@ -144,17 +140,16 @@ AI 會幫你整理成下一步攻略！"
       <div class="lg:col-span-8">
         <!-- Empty State -->
         <div id="welcomeScreen" class="h-full min-h-[400px] flex flex-col items-center justify-center bg-white rounded-3xl border border-slate-100 shadow-sm p-12 text-center">
-          <div class="w-24 h-24 bg-indigo-50 rounded-full flex items-center justify-center mb-6 text-indigo-300 relative group cursor-default transition-all hover:bg-indigo-100">
-            <i class="fas fa-robot text-4xl transform group-hover:scale-110 transition-transform"></i>
-            <div class="absolute -bottom-2 bg-indigo-600 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">READY</div>
+          <div class="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mb-6 text-slate-300">
+            <i class="fas fa-clipboard-list text-4xl"></i>
           </div>
-          <h3 class="text-slate-700 font-black text-xl mb-2">準備好升級你的服務了嗎？</h3>
+          <h3 class="text-slate-700 font-black text-xl mb-2">等待輸入日誌資料</h3>
           <p class="text-slate-400 text-sm max-w-md leading-relaxed">
-            輸入日誌後，我會幫你整理：<br>
+            系統將以嚴謹的顧問視角，為您分析：<br>
             <span class="inline-block mt-2">
-                <span class="bg-slate-100 px-2 py-1 rounded text-xs font-bold text-slate-600 mr-1">🎯 下次重點</span>
-                <span class="bg-slate-100 px-2 py-1 rounded text-xs font-bold text-slate-600 mr-1">💬 破關話術</span>
-                <span class="bg-slate-100 px-2 py-1 rounded text-xs font-bold text-slate-600">📱 暖心簡訊</span>
+                <span class="bg-slate-100 px-2 py-1 rounded text-xs font-bold text-slate-600 mr-1">📊 真實商機評級</span>
+                <span class="bg-slate-100 px-2 py-1 rounded text-xs font-bold text-slate-600 mr-1">🧠 銷售心理策略</span>
+                <span class="bg-slate-100 px-2 py-1 rounded text-xs font-bold text-slate-600">📅 14天追蹤計畫</span>
             </span>
           </p>
         </div>
@@ -205,8 +200,8 @@ AI 會幫你整理成下一步攻略！"
       const resultDiv = document.getElementById('analysisResult');
       const welcome = document.getElementById('welcomeScreen');
 
-      if (!apiKey) { alert('請先輸入 Gemini API Key 才能呼叫神隊友喔！'); return; }
-      if (!logInput) { alert('請貼上日誌內容，讓我幫你分析！'); return; }
+      if (!apiKey) { alert('請先輸入 Gemini API Key。'); return; }
+      if (!logInput) { alert('請貼上日誌內容。'); return; }
 
       btn.disabled = true;
       status.classList.remove('hidden');
@@ -226,76 +221,84 @@ ${logInput}
       `.trim();
 
       const systemPrompt = `
-你是一位充滿活力、用語年輕（Z世代風格）、超級支持門市同仁的「AI 神隊友」(不是嚴肅的督導)。
-你的任務是協助門市同仁分析服務日誌，找出可以「升級」的地方，並給予具體的下一步建議。
+你是一位具遠見、思維清晰、具有高度智慧的「商業顧問導師」與「嚴師」。
+你擁有世界級商業諮詢公司的深度經驗，並對視力、聽力、睡眠與保健食品產業有深度的經歷與洞察。
+你非常精通銷售心理學、消費者行為與各項管理指標。
 
-請以【鼓勵、正向、好吸收】的口吻輸出 JSON：
+請以【嚴謹、專業、具洞察力】的口吻協助門市同仁分析日誌。你的目標不是討好同仁，而是協助他們看清盲點，提升成交率。
 
-【重要：產品知識庫 - Oticon Intent 系列】
-請運用此知識來判斷並建議：
-1. **Intent 1 (頂規)**：搭載 4D 感測技術，降噪達 12dB，瞬間噪音抑制達 30dB。
-   * 適用情境：極度吵雜環境、對聲音細節要求極高、無法忍受突發噪音的用戶。
-2. **Intent 2 (高階)**：搭載 4D 感測技術，降噪達 10dB，瞬間噪音抑制達 25dB。
-   * 適用情境：需要吵雜環境語音清晰度，CP值較高。
-3. **Intent 3 (進階)**：**無** 4D 感測技術，降噪 8dB，瞬間噪音抑制 20dB。
-   * 適用情境：生活環境相對單純，預算考量者。
-* **4D感測技術優勢**：經實證比 Real 系列多提供 5dB 信噪比 (SNR)，吵雜環境語音清晰度大幅提升。
+【核心判斷邏輯】
 
-【特殊判斷邏輯 - 請務必執行】
-1. **YOUMATIC 檢核**：若日誌提到「音質不習慣」、「聲音太亮/太利」等關鍵字，**且**聽損程度優於「重度」(即正常、輕度、中度、中重度)，請務必在「升級挑戰」或「下次進店攻略」中，強烈建議施測「YOUMATIC (個人特質話精靈)」，並說明這能解決音質適應問題。
+1.  **商機評級 (Opportunity Grade) - 請嚴格把關**：
+    不要輕易給 A。請綜合評估以下三點：
+    * **用戶動機 (Motivation)**：是「想要改變」還是「被逼來的」？是「剛性需求」(不配不行) 還是「改善型需求」？
+    * **家庭支持 (Support)**：決策者是否在場？家屬是助力(支持配戴)還是阻力(覺得貴/沒必要)？
+    * **聽損程度 (Severity)**：是否已影響生活(如：打麻將聽不到、電視開很大聲)？聽損越重，剛需越強。
+    * **評級標準**：
+        * **S級**：剛需強 + 決策者支持 + 預算無虞。
+        * **A級**：剛需強 + 意願高，但需排除小異議。
+        * **B級**：有需求但動機弱，或受價格/家屬阻礙 (這是最常見的，請多以此為基準)。
+        * **C級**：無自覺、排斥、純比價。
 
-2. **產品推薦判斷**：若用戶抱怨「吵雜聽不清」，請依據上述產品知識，優先建議運用 **Intent 1 或 2** 的「4D感測技術」來解決。若用戶怕「突然的大聲」，請強調「瞬響聲穩定器」。
+2.  **銷售心理學應用**：
+    在建議中，請明確指出可運用的心理學技巧，例如：
+    * **損失厭惡 (Loss Aversion)**：強調「聽不到」會失去什麼(親情、社交)，而非只強調「聽得到」有什麼好處。
+    * **定錨效應 (Anchoring)**：如何正確呈現價格。
+    * **社會證明 (Social Proof)**：利用類似案例的故事。
+    * **認知失調 (Cognitive Dissonance)**：溫和指出「想改善生活」與「拒絕輔具」之間的矛盾。
 
-3. **成熟攻略與銷售心理學**：在建議「下次進店攻略」時，請融入「銷售心理學」(互惠、稀缺、定錨) 與「長輩互動」(顧面子、先認同)。
+3.  **產品策略 (Oticon Intent 系列)**：
+    * 若用戶覺得**吵雜環境聽不清**：務必推薦 **Intent 1 或 2** (搭載 4D 感測技術，+5dB SNR)。
+    * 若用戶**怕突發大聲**：強調瞬響聲穩定器。
+    * 若**音質不習慣且聽損非重度**：務必建議施測 **YOUMATIC**。
 
-4. **【核心邀約哲學】(請嚴格遵守此邏輯撰寫追蹤話術與建議)**：
-    用戶沒買是因為還沒走到行動那一步。
-    - **分類用戶**：先判斷卡點（價格/決策者/感受），對症下藥。
-    - **找動機**：話術起手式先喚醒「當初為何走進來」的記憶與感受（還記得那天試聽完您說聽得很清楚...），降低對電話邀約的防備，把「需要」慢慢變成「想再來看看」。
-    - **降門檻**：邀約不是逼決定，而是給最容易跨出的那一步（如：來喝杯茶聊聊、再來戴戴看不用錢），門檻越低，行動越容易。
-    - **持續陪跑**：提醒同仁，用戶做決定平均需要 8.9 次自我說服，重點是穩穩陪他走到準備好的那天，不要急。
+4.  **追蹤計畫 (Follow-up Plan) - 24h / 7d / 14d**：
+    * 用戶平均需要 8.9 次自我說服。
+    * **24h**：溫暖關懷，降低購後(或未購)焦慮，重申價值。
+    * **7d**：習慣養成確認，處理初期異議。
+    * **14d**：深度關係維護，邀約回店調整或是再次嘗試(若未購)。
 
-5. **簡訊模板**：請提供 3 則。
-    - **第一則必須為【正式官方版】**，開頭固定為：「【科林助聽器】親愛的${userName}貴賓，您好！」，語氣須代表公司，正式得體。
-    - 另外兩則為【暖心個人版】，語氣親切像真人朋友。
+5.  **簡訊模板 (Tone of Voice)**：
+    * **對象是長輩，請絕對避免輕浮、過度活潑的用語。**
+    * 請使用穩重、溫暖、尊重的語氣 (Honorifics)。
+    * **第一則必須為【正式官方版】**：開頭固定為「【科林助聽器】親愛的${userName}貴賓，您好！」，內容須得體大方。
+    * 另外兩則為【個人關懷版】：語氣誠懇，像一位值得信賴的健康顧問。
 
 【輸出 JSON 結構】
-1. **summary**: 用一段溫暖的話總結今天的服務表現，先肯定同仁的努力，再帶出重點。
-2. **service_challenges_top3**: 找出 1-3 個「升級挑戰」(原本的服務斷點)。
-    - challenge: 發生什麼狀況
-    - solution: 破關秘籍 (具體建議，包含 YOUMATIC 或 Intent 產品優勢若符合條件)
-    - cheer_up_msg: 神隊友的一句話
-3. **next_visit_focus**: 列出 3 點「下次進店(或追蹤)的絕對重點」，請包含銷售心理學與長輩互動技巧，並融入【核心邀約哲學】。
-4. **cases**: 針對個案的詳細分析
+1. **summary**: 導師的總體點評 (請一針見血指出優點與盲點)。
+2. **service_challenges_top3**: 3 個關鍵挑戰與對策。
+    - challenge: 盲點或挑戰
+    - solution: 顧問建議 (包含心理學技巧/產品優勢/YOUMATIC)
+    - cheer_up_msg: 導師的指引 (金句)
+3. **next_visit_focus**: 下次進店或接觸的 3 個戰略重點 (請包含具體的銷售心理學應用)。
+4. **cases**: 個案詳情
     - id
-    - opportunity_grade (S/A/B/C) 
-    - disc_strategy (針對用戶個性的「一句話攻略」)
-    - followup_plan (24h/7d 的行動建議，請運用【核心邀約哲學】：喚醒動機+降低門檻)
-5. **sms_templates**: 3 則簡訊模板 (含1則正式版)。
+    - opportunity_grade (S/A/B/C) 與 **嚴謹的評估理由**
+    - disc_strategy (針對個性的專業應對)
+    - followup_plan (24h / 7d / **14d** 的具體行動)
+5. **sms_templates**: 3 則簡訊 (1則正式，2則溫暖穩重)。
 
 【輸出範例 (JSON)】
 {
-  "summary": "哇！今天處理陳阿姨的Case真的很細心...",
+  "summary": "本次服務流程完整，但對『價格異議』的處理過於退讓...",
   "service_challenges_top3": [
-    { "challenge": "音質有些不習慣", "solution": "聽損程度適合，下次務必做 YOUMATIC 調整音質參數！", "cheer_up_msg": "用對工具，滿意度直接起飛！🚀" },
-    { "challenge": "在吵雜環境覺得還是聽不清楚", "solution": "這時候就要推 Intent 1！用 4D 感測技術幫他降噪 12dB，效果超明顯。", "cheer_up_msg": "好產品就是你的底氣！" }
+    { "challenge": "家屬(女兒)是隱形阻礙", "solution": "運用『互惠原則』，先肯定女兒的孝心...", "cheer_up_msg": "搞定決策者，訂單自然來。" }
   ],
   "next_visit_focus": [
-    "1. 運用『定錨效應』：先提價格較高的旗艦款建立價值感...",
-    "2. 照顧長輩面子：...",
-    "3. ..."
+    "1. 運用『定錨效應』：先提 Intent 1 的價值...",
+    "2. ..."
   ],
   "cases": [
     {
       "case_id": "...",
-      "opportunity_grade": "A",
+      "opportunity_grade": "B",
+      "opportunity_reason": "動機尚可，但關鍵決策者(女兒)對價格有疑慮，且未做REM缺乏客觀數據支撐。",
       "disc_strategy": "...",
-      "followup_plan": { "within_24h": "...", "within_7d": "..." }
+      "followup_plan": { "within_24h": "...", "within_7d": "...", "within_14d": "..." }
     }
   ],
   "sms_templates": [
-    { "scenario": "正式關懷 (必備)", "template": "【科林助聽器】親愛的陳阿姨貴賓，您好！..." },
-    { "scenario": "...", "template": "..." }
+    { "scenario": "正式關懷", "template": "【科林助聽器】親愛的王大明貴賓，您好！..." }
   ]
 }
       `.trim();
@@ -313,7 +316,7 @@ ${logInput}
               systemInstruction: { parts: [{ text: systemPrompt }] },
               generationConfig: {
                 responseMimeType: "application/json",
-                temperature: 0.5
+                temperature: 0.3
               }
             })
           }
@@ -328,6 +331,7 @@ ${logInput}
         let cleanText = raw.replace(/```json/gi, '').replace(/```/g, '').trim();
 
         try {
+          // Attempt to parse directly
           result = JSON.parse(cleanText);
         } catch (e) {
           console.warn("Initial parse failed, attempting repairs...");
@@ -353,7 +357,7 @@ ${logInput}
 
       } catch (error) {
         console.error(error);
-        alert('召喚失敗：請檢查網路或 API Key 喔！(詳細錯誤請看 Console)');
+        alert('分析失敗：請檢查網路或 API Key。(詳細錯誤請看 Console)');
       } finally {
         btn.disabled = false;
         status.classList.add('hidden');
@@ -366,7 +370,7 @@ ${logInput}
     // =======================
     function renderSimplifiedReport(data) {
         const container = document.getElementById('analysisResult');
-        const summary = data?.summary || "今天辛苦了！資料讀取中...";
+        const summary = data?.summary || "資料讀取中...";
         const focus = data?.next_visit_focus || [];
         const challenges = data?.service_challenges_top3 || [];
         const cases = data?.cases || [];
@@ -374,29 +378,29 @@ ${logInput}
 
         let html = '';
 
-        // 1. Warm Summary & Next Focus (Top Priority)
+        // 1. Consultant Summary & Next Focus (Top Priority)
         html += `
-          <div class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl p-8 text-white shadow-xl shadow-indigo-200">
+          <div class="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm">
             <div class="flex items-start gap-4">
-                <div class="bg-white/20 p-3 rounded-2xl backdrop-blur-sm">
-                    <i class="fas fa-heart text-2xl text-white"></i>
+                <div class="bg-slate-100 p-3 rounded-2xl">
+                    <i class="fas fa-user-graduate text-2xl text-slate-600"></i>
                 </div>
                 <div>
-                    <h2 class="text-xl font-black mb-2">夥伴，今天做得不錯喔！</h2>
-                    <p class="text-indigo-50 leading-relaxed text-sm opacity-90">${escapeHtml(summary)}</p>
+                    <h2 class="text-xl font-black text-slate-800 mb-2">顧問導師點評</h2>
+                    <p class="text-slate-600 leading-relaxed text-sm font-medium">${escapeHtml(summary)}</p>
                 </div>
             </div>
 
-            <div class="mt-8 bg-white/10 rounded-2xl p-6 backdrop-blur-md border border-white/10">
+            <div class="mt-8 bg-slate-50 rounded-2xl p-6 border border-slate-100">
                 <div class="flex items-center gap-2 mb-4">
-                    <i class="fas fa-crosshairs text-yellow-300"></i>
-                    <h3 class="font-bold text-lg">下次進店攻略 (絕對重點)</h3>
+                    <i class="fas fa-bullseye text-red-500"></i>
+                    <h3 class="font-bold text-lg text-slate-800">下次接觸戰略重點</h3>
                 </div>
                 <ul class="space-y-3">
                     ${focus.map(item => `
                         <li class="flex items-start gap-3">
-                            <i class="fas fa-check-circle mt-1 text-emerald-300"></i>
-                            <span class="text-sm font-bold opacity-95">${escapeHtml(item)}</span>
+                            <i class="fas fa-check-circle mt-1 text-slate-400"></i>
+                            <span class="text-sm font-bold text-slate-700">${escapeHtml(item)}</span>
                         </li>
                     `).join('') || '<li class="text-sm opacity-70">暫無特別重點</li>'}
                 </ul>
@@ -404,34 +408,33 @@ ${logInput}
           </div>
         `;
 
-        // 2. Level Up Challenges (Formerly Breakpoints)
+        // 2. Strategic Challenges (Level Up)
         if (challenges.length > 0) {
             html += `
               <div class="mt-10">
                 <div class="flex items-center gap-3 mb-5 px-2">
                    <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-sm">
-                     UP
+                     !
                    </div>
-                   <h2 class="text-xl font-black text-slate-800">升級挑戰 (Level Up)</h2>
+                   <h2 class="text-xl font-black text-slate-800">關鍵挑戰與對策</h2>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                   ${challenges.map((b, i) => `
-                    <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
-                      <div class="absolute top-0 left-0 w-1 h-full bg-amber-400"></div>
+                    <div class="bg-white rounded-2xl p-5 border-l-4 border-amber-400 shadow-sm relative overflow-hidden">
                       <div class="mb-3">
-                        <div class="text-[10px] font-bold text-amber-500 uppercase tracking-wide mb-1">CHALLENGE #${i+1}</div>
+                        <div class="text-[10px] font-bold text-amber-600 uppercase tracking-wide mb-1">CHALLENGE #${i+1}</div>
                         <div class="font-black text-slate-800 leading-snug">${escapeHtml(b.challenge)}</div>
                       </div>
                       
-                      <div class="bg-slate-50 rounded-xl p-3 mb-3">
-                        <div class="text-[10px] text-slate-400 font-bold mb-1">破關秘籍 🗝️</div>
+                      <div class="bg-slate-50 rounded-xl p-3 mb-3 border border-slate-100">
+                        <div class="text-[10px] text-slate-400 font-bold mb-1">顧問建議 🗝️</div>
                         <div class="text-sm text-slate-700 font-medium">${escapeHtml(b.solution)}</div>
                       </div>
 
-                      <div class="flex items-center gap-2 text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-2 rounded-lg">
-                        <i class="fas fa-comment-dots"></i>
-                        <span>"${escapeHtml(b.cheer_up_msg)}"</span>
+                      <div class="flex items-center gap-2 text-xs font-bold text-slate-500 bg-slate-100 px-3 py-2 rounded-lg">
+                        <i class="fas fa-quote-left"></i>
+                        <span>${escapeHtml(b.cheer_up_msg)}</span>
                       </div>
                     </div>
                   `).join('')}
@@ -447,45 +450,58 @@ ${logInput}
             <div class="space-y-5">
                 <div class="flex items-center gap-3 px-2">
                    <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
-                     <i class="fas fa-id-card"></i>
+                     <i class="fas fa-chart-line"></i>
                    </div>
-                   <h2 class="text-xl font-black text-slate-800">個案戰情</h2>
+                   <h2 class="text-xl font-black text-slate-800">個案戰情分析</h2>
                 </div>
 
-                ${cases.map(c => `
-                    <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-                        <div class="flex justify-between items-start mb-4">
+                ${cases.map(c => {
+                    const grade = c.opportunity_grade || '?';
+                    const color = grade === 'S' || grade === 'A' ? 'text-green-600 bg-green-100' : grade === 'B' ? 'text-blue-600 bg-blue-100' : 'text-slate-600 bg-slate-100';
+                    
+                    return `
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                        <div class="flex justify-between items-start mb-4 border-b border-slate-100 pb-4">
                             <div>
                                 <h3 class="text-lg font-black text-slate-800">${escapeHtml(c.case_id)}</h3>
-                                <div class="text-xs text-slate-500 font-medium bg-slate-100 inline-block px-2 py-0.5 rounded mt-1">DISC 攻略: ${escapeHtml(c.disc_strategy || '無')}</div>
+                                <div class="text-xs text-slate-500 font-medium mt-1">DISC 策略: ${escapeHtml(c.disc_strategy || '無')}</div>
                             </div>
                             <div class="text-center">
-                                <div class="text-[10px] text-slate-400 font-bold uppercase">成交機率</div>
-                                <div class="text-xl font-black text-indigo-600">${escapeHtml(c.opportunity_grade || '-')}</div>
+                                <div class="text-[10px] text-slate-400 font-bold uppercase mb-1">商機評級</div>
+                                <div class="w-10 h-10 rounded-lg flex items-center justify-center font-black text-xl ${color}">${grade}</div>
                             </div>
                         </div>
                         
+                        <div class="mb-4 bg-slate-50 p-3 rounded-lg">
+                            <div class="text-[10px] text-slate-400 font-bold uppercase mb-1">評級理由</div>
+                            <div class="text-xs text-slate-700 font-medium leading-relaxed">${escapeHtml(c.opportunity_reason || '無詳細理由')}</div>
+                        </div>
+
                         <div class="space-y-2">
-                             <div class="flex gap-3 items-center p-2 rounded-lg bg-blue-50/50 border border-blue-50">
-                                <span class="text-xs font-black text-blue-400 w-8">24H</span>
-                                <span class="text-sm font-bold text-slate-700">${escapeHtml(c.followup_plan?.within_24h || '休息一下')}</span>
+                             <div class="flex gap-3 items-start p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                                <span class="text-xs font-black text-blue-500 w-8 pt-0.5">24H</span>
+                                <span class="text-sm font-bold text-slate-700 leading-snug">${escapeHtml(c.followup_plan?.within_24h || '-')}</span>
                              </div>
-                             <div class="flex gap-3 items-center p-2 rounded-lg bg-slate-50 border border-slate-100">
-                                <span class="text-xs font-black text-slate-400 w-8">7D</span>
-                                <span class="text-sm font-medium text-slate-600">${escapeHtml(c.followup_plan?.within_7d || '持續追蹤')}</span>
+                             <div class="flex gap-3 items-start p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                                <span class="text-xs font-black text-slate-400 w-8 pt-0.5">7D</span>
+                                <span class="text-sm font-medium text-slate-600 leading-snug">${escapeHtml(c.followup_plan?.within_7d || '-')}</span>
+                             </div>
+                             <div class="flex gap-3 items-start p-2 rounded-lg hover:bg-slate-50 transition-colors">
+                                <span class="text-xs font-black text-slate-400 w-8 pt-0.5">14D</span>
+                                <span class="text-sm font-medium text-slate-600 leading-snug">${escapeHtml(c.followup_plan?.within_14d || '-')}</span>
                              </div>
                         </div>
                     </div>
-                `).join('')}
+                `}).join('')}
             </div>
 
             <!-- SMS -->
             <div class="space-y-5">
                 <div class="flex items-center gap-3 px-2">
                    <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
-                     <i class="fas fa-comment-alt"></i>
+                     <i class="fas fa-comment-dots"></i>
                    </div>
-                   <h2 class="text-xl font-black text-slate-800">暖心簡訊包</h2>
+                   <h2 class="text-xl font-black text-slate-800">客戶維繫簡訊</h2>
                 </div>
 
                 <div class="grid grid-cols-1 gap-4">
@@ -494,8 +510,8 @@ ${logInput}
                             <div class="absolute top-4 right-4 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <i class="fas fa-copy"></i>
                             </div>
-                            <div class="text-xs font-bold text-emerald-600 mb-2 uppercase tracking-wide">${escapeHtml(t.scenario)}</div>
-                            <p class="text-sm text-slate-600 leading-relaxed font-medium group-hover:text-slate-900 transition-colors">${escapeHtml(t.template)}</p>
+                            <div class="text-xs font-bold text-emerald-700 mb-2 uppercase tracking-wide bg-emerald-50 inline-block px-2 py-0.5 rounded">${escapeHtml(t.scenario)}</div>
+                            <p class="text-sm text-slate-700 leading-relaxed font-medium group-hover:text-slate-900 transition-colors whitespace-pre-wrap">${escapeHtml(t.template)}</p>
                         </div>
                     `).join('')}
                 </div>
@@ -519,7 +535,7 @@ ${logInput}
         navigator.clipboard.writeText(text).then(() => {
             // Simple toast notification
             const toast = document.createElement('div');
-            toast.className = 'fixed bottom-5 right-5 bg-slate-800 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-bounce';
+            toast.className = 'fixed bottom-5 right-5 bg-slate-800 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-bounce z-50';
             toast.innerHTML = '<i class="fas fa-check mr-2 text-emerald-400"></i> 已複製簡訊！';
             document.body.appendChild(toast);
             setTimeout(() => toast.remove(), 2000);
